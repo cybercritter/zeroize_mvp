@@ -8,15 +8,20 @@ This is a MVP of a "zeroize" function.
 
 Code Quality Metrics <br>
 <br>
-[![quality gate](.badges/alert_status.svg)](http://localhost:9000/dashboard?id=sample_sonar_projectKey) 
-[![bugs](.badges/bugs.svg)](http://localhost:9000/component_measures?id=sample_sonar_projectKey&metric=bugs)
-[![code smells](.badges/code_smells.svg)](http://localhost:9000/component_measures?id=sample_sonar_projectKey&metric=code_smells)
-[![coverage](.badges/coverage.svg)](http://localhost:9000/component_measures?id=sample_sonar_projectKey&metric=coverage)
-[![duplicated lines](.badges/duplicated_lines_density.svg)](http://localhost:9000/component_measures?id=sample_sonar_projectKey&metric=duplicated_lines_density)
-[![lines of code](.badges/ncloc.svg)](http://localhost:9000/component_measures?id=sample_sonar_projectKey&metric=ncloc)
-[![reliability](.badges/reliability_rating.svg)](http://localhost:9000/component_measures?id=sample_sonar_projectKey&metric=reliability_rating)
-[![security hotspots](.badges/security_hotspots.svg)](http://localhost:9000/component_measures?id=sample_sonar_projectKey&metric=security_hotspots)
-[![security](.badges/security_rating.svg)](http://localhost:9000/component_measures?id=sample_sonar_projectKey&metric=security_rating)
-[![technical debt](.badges/sqale_index.svg)](http://localhost:9000/component_measures?id=sample_sonar_projectKey&metric=sqale_index)
-[![maintainability](.badges/sqale_rating.svg)](http://localhost:9000/component_measures?id=sample_sonar_projectKey&metric=sqale_rating)
-[![vulnerabilities](.badges/vulnerabilities.svg)](http://localhost:9000/component_measures?id=sample_sonar_projectKey&metric=vulnerabilities)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=cybercritter_zeroize_mvp&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=cybercritter_zeroize_mvp)
+
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=cybercritter_zeroize_mvp&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=cybercritter_zeroize_mvp)
+
+
+
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=cybercritter_zeroize_mvp&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=cybercritter_zeroize_mvp)
+
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=cybercritter_zeroize_mvp&metric=bugs)](https://sonarcloud.io/summary/new_code?id=cybercritter_zeroize_mvp)
+
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=cybercritter_zeroize_mvp&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=cybercritter_zeroize_mvp)
+
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=cybercritter_zeroize_mvp&metric=coverage)](https://sonarcloud.io/summary/new_code?id=cybercritter_zeroize_mvp)
+
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=cybercritter_zeroize_mvp&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=cybercritter_zeroize_mvp)
+
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=cybercritter_zeroize_mvp&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=cybercritter_zeroize_mvp)
