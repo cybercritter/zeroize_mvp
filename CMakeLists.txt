@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.31)
+cmake_minimum_required(VERSION 4.1)
 
 # Project name
 project(zeroize)
@@ -11,8 +11,6 @@ set(CMAKE_C_EXTENSIONS OFF)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON )
 set(CMAKE_CXX_EXTENSIONS OFF)
-
-set(EXPORT_COMPILE_COMMANDS ON)
 
 set(SRC_FILES 
     src/main.cpp
@@ -37,7 +35,7 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
 # Example test
-add_executable(zeroize_test src/test_main.cpp)
+add_executable(zeroize_test tests/test_main.cpp)
 target_link_libraries(zeroize_test gtest_main)
 add_test(NAME zeroize_test COMMAND zeroize_test)
 
