@@ -14,10 +14,12 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 set(SRC_FILES 
     src/main.cpp
+    src/zeroize.c
 )
 
 # Add your source files here
 add_executable(${PROJECT_NAME} ${SRC_FILES})
+target_include_directories(${PROJECT_NAME} PRIVATE include)
 
 # Enable testing
 include(CTest)

@@ -1,6 +1,40 @@
 #ifndef ZEROIZE_H
 #define ZEROIZE_H 
 
-const int ZEROIZE_SIZE = 64; // Size of the zeroization buffer
+/**
+ * @file zeroize.h
+ * @brief Provides functions and constants for securely zeroizing memory buffers.
+ *
+ * This header defines constants and functions for securely overwriting memory
+ * regions with specific patterns, which is useful for removing sensitive data
+ * from memory. It includes buffer size, alignment, and patterns for zeroization.
+ *
+ * Constants:
+ *   ZEROIZE_ALIGNMENT       - Alignment requirement for zeroization (in bytes).
+ *   ZEROIZE_PATTERN         - Pattern (0xA5) used to overwrite memory.
+ *   ZEROIZE_PATTERN_REVERSE - Alternate pattern (0x5A) for overwriting memory.
+ *
+ * Functions:
+ *   int zeroize(void *ptr, size_t size);
+ *     Overwrites the memory region pointed to by ptr with a secure pattern.
+ *     @param ptr  Pointer to the memory region to zeroize.
+ *     @param size Size of the memory region in bytes.
+ *     @return 0 on success, non-zero on failure.
+ *
+ *   bool is_zeroized(const void *ptr, size_t size);
+ *     Checks if the memory region is zeroized (matches the zeroization pattern).
+ *     @param ptr  Pointer to the memory region to check.
+ *     @param size Size of the memory region in bytes.
+ *     @return true if the region is zeroized, false otherwise.
+ */
 
+#include <stddef.h> // For size_t
+#include <stdbool.h> // For bool type
+
+const int ZEROIZE_PATTERN = 0xA5; // Pattern to zeroize memory
+const int ZEROIZE_PATTERN_REVERSE = 0x5A; // Pattern to zeroize memory
+const int ZEROIZE_ALIGNMENT = 4; // Alignment requirement for zeroization
+
+int zeroize(void *ptr, size_t size);
+bool is_zeroized(const void *ptr, size_t size);
 #endif
