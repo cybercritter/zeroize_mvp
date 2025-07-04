@@ -9,14 +9,7 @@ TEST_F(zeroize_test, ZeroizeFillsWithPattern)
     ASSERT_EQ(zeroize(buffer, sizeof(buffer)), 0);
     for (size_t i = 0; i < sizeof(buffer); ++i)
     {
-        if(i ==sizeof(buffer) - 1)
-        {
-            EXPECT_EQ(buffer[i], static_cast<unsigned char>(ZEROIZE_PATTERN_REVERSE));
-        }
-        else
-        {
-            EXPECT_EQ(buffer[i], static_cast<unsigned char>(ZEROIZE_PATTERN));
-        }
+        EXPECT_EQ(buffer[i], static_cast<unsigned char>(ZEROIZE_PATTERN));
     }
 }
 
@@ -47,7 +40,7 @@ TEST_F(zeroize_test, IsZeroizedReturnsFalseForNonZeroizedBuffer)
 
 TEST_F(zeroize_test, IsZeroizedReturnsFalseForZeroSize)
 {
-    unsigned char buffer[4]={};
+    unsigned char buffer[4] = {};
     EXPECT_FALSE(is_zeroized(buffer, 0));
 }
 

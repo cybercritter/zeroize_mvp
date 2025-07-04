@@ -7,6 +7,7 @@
  */
 
 #include <zeroize.h>
+#include <stdio.h>
 
 /**
  * @brief Overwrites a memory region with a predefined zeroization pattern.
@@ -46,7 +47,6 @@ int zeroize(void *ptr, size_t size)
         {
             p[i] = ZEROIZE_PATTERN;
         }
-        p[size - 1] = ZEROIZE_PATTERN_REVERSE; // Set the last byte to a different pattern
     }
 
     return error_code;
@@ -86,6 +86,9 @@ bool is_zeroized(const void *ptr, size_t size)
             {
                 is_zeroized_flag = false; // Memory is not zeroized
                 break;                    // Exit loop early if a non-zeroized byte is found
+            }
+            else {
+                printf("Byte %zu is zeroized with pattern %02X\n", i, p[i]);
             }
         }
     }
