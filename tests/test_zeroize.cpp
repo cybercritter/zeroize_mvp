@@ -1,16 +1,18 @@
 #include <gtest/gtest.h>
 #include "zeroize_test.h"
 #include "zeroize.h"
+#include <algorithm>
+#include <iterator>
 
 TEST_F(zeroize_test, ZeroizeFillsWithPattern)
 {
     unsigned char buffer[16];
     memset(buffer, 0x00, sizeof(buffer));
     ASSERT_EQ(zeroize(buffer, sizeof(buffer)), 0);
-    for (size_t i = 0; i < sizeof(buffer); ++i)
-    {
-        EXPECT_EQ(buffer[i], static_cast<unsigned char>(ZEROIZE_PATTERN));
-    }
+   
+    std::for_each(buffer, buffer + sizeof(buffer), [](unsigned char val) {
+        EXPECT_EQ(val, static_cast<unsigned char>(ZEROIZE_PATTERN));
+    });
 }
 
 TEST_F(zeroize_test, ZeroizeReturnsNonZeroOnNullPointer)

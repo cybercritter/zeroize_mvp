@@ -7,7 +7,6 @@
  */
 
 #include <zeroize.h>
-#include <stdio.h>
 
 /**
  * @brief Overwrites a memory region with a predefined zeroization pattern.
@@ -20,9 +19,9 @@
  * @param size Number of bytes to overwrite.
  * @return 0 on success, -1 if ptr is NULL or size is 0.
  */
-int zeroize(void *ptr, size_t size)
+int8_t zeroize(void *ptr, size_t size)
 {
-    int error_code = 0; // Initialize error code
+    int8_t error_code = 0; // Initialize error code
 
     if (ptr == NULL || size == 0)
     {
@@ -86,9 +85,6 @@ bool is_zeroized(const void *ptr, size_t size)
             {
                 is_zeroized_flag = false; // Memory is not zeroized
                 break;                    // Exit loop early if a non-zeroized byte is found
-            }
-            else {
-                printf("Byte %zu is zeroized with pattern %02X\n", i, p[i]);
             }
         }
     }

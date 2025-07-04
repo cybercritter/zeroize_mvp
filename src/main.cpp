@@ -24,8 +24,7 @@ int main() {
     cout << "Object ID: " << obj.getId() << endl;
     cout << "Object Data: " << obj.getData() << endl;
 
-    if(zeroize((void*)&obj, sizeof(obj))== -1)
-    {
+    if(zeroize((void*)&obj, sizeof(obj)) != 0)    {
         cerr << "Error zeroizing object!" << endl;
         return 1;
     }

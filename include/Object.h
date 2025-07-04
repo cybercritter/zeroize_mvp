@@ -7,21 +7,21 @@
  * that initializes these values and provides getter methods for access.
  */
 #ifndef OBJECT_H
-#define OBJECT_H  
+#define OBJECT_H
 
-
-class Object {
+class Object
+{
 public:
-  Object() : id(1234534), data(123098) {} 
-  virtual ~Object() {};    
+  Object() : id(1234534), data(123098) {}
+  virtual ~Object() {};
   int getId() const;
   int getData() const;
   void setId(int newId) { id = newId; }
-  void setData(int newData) { data = newData; } 
+  void setData(int newData) { data = newData; }
+
 private:
   int id;
-  int data; 
-
+  int data;
 };
 
 #endif
