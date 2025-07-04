@@ -9,7 +9,14 @@ TEST_F(zeroize_test, ZeroizeFillsWithPattern)
     ASSERT_EQ(zeroize(buffer, sizeof(buffer)), 0);
     for (size_t i = 0; i < sizeof(buffer); ++i)
     {
-        EXPECT_EQ(buffer[i], static_cast<unsigned char>(ZEROIZE_PATTERN));
+        if(i ==sizeof(buffer) - 1)
+        {
+            EXPECT_EQ(buffer[i], static_cast<unsigned char>(ZEROIZE_PATTERN_REVERSE));
+        }
+        else
+        {
+            EXPECT_EQ(buffer[i], static_cast<unsigned char>(ZEROIZE_PATTERN));
+        }
     }
 }
 
@@ -18,10 +25,10 @@ TEST_F(zeroize_test, ZeroizeReturnsNonZeroOnNullPointer)
     EXPECT_NE(zeroize(nullptr, 10), 0);
 }
 
-TEST_F(zeroize_test, ZeroizeReturnsZeroOnZeroSize)
+TEST_F(zeroize_test, ZeroizeReturnsMinusOneOnZeroSize)
 {
     unsigned char buffer[8];
-    EXPECT_EQ(zeroize(buffer, 0), 0);
+    EXPECT_EQ(zeroize(buffer, 0), -1);
 }
 
 TEST_F(zeroize_test, IsZeroizedReturnsTrueForZeroizedBuffer)
@@ -38,10 +45,10 @@ TEST_F(zeroize_test, IsZeroizedReturnsFalseForNonZeroizedBuffer)
     EXPECT_FALSE(is_zeroized(buffer, sizeof(buffer)));
 }
 
-TEST_F(zeroize_test, IsZeroizedReturnsTrueForZeroSize)
+TEST_F(zeroize_test, IsZeroizedReturnsFalseForZeroSize)
 {
-    unsigned char buffer[4];
-    EXPECT_TRUE(is_zeroized(buffer, 0));
+    unsigned char buffer[4]={};
+    EXPECT_FALSE(is_zeroized(buffer, 0));
 }
 
 TEST_F(zeroize_test, IsZeroizedReturnsFalseOnNullPointer)

@@ -25,12 +25,15 @@ int zeroize(void *ptr, size_t size)
 
     if (ptr == NULL || size == 0)
     {
-        error_code = - 1; // Error: Invalid pointer or size
+        error_code = -1; // Error: Invalid pointer or size
     }
-
-    if (size % ZEROIZE_ALIGNMENT != 0)
+    else
     {
-        error_code = -2; // Error: Size is not aligned
+
+        if (size % ZEROIZE_ALIGNMENT != 0)
+        {
+            error_code = -2; // Error: Size is not aligned
+        }
     }
 
     if (error_code == 0)
@@ -44,48 +47,47 @@ int zeroize(void *ptr, size_t size)
             p[i] = ZEROIZE_PATTERN;
         }
         p[size - 1] = ZEROIZE_PATTERN_REVERSE; // Set the last byte to a different pattern
-
     }
-    
+
     return error_code;
 }
 
-    /**
-     * @brief Checks if a memory region is fully zeroized.
-     *
-     * This function verifies that every byte in the specified memory region matches
-     * the ZEROIZE_PATTERN value.
-     *
-     * @param ptr Pointer to the memory region to check.
-     * @param size Number of bytes to check.
-     * @return true if all bytes are equal to ZEROIZE_PATTERN, false otherwise or if
-     *         ptr is NULL or size is 0.
-     */
-    bool is_zeroized(const void *ptr, size_t size)
+/**
+ * @brief Checks if a memory region is fully zeroized.
+ *
+ * This function verifies that every byte in the specified memory region matches
+ * the ZEROIZE_PATTERN value.
+ *
+ * @param ptr Pointer to the memory region to check.
+ * @param size Number of bytes to check.
+ * @return true if all bytes are equal to ZEROIZE_PATTERN, false otherwise or if
+ *         ptr is NULL or size is 0.
+ */
+bool is_zeroized(const void *ptr, size_t size)
+{
+    bool is_zeroized_flag = true; // Initialize to true
+
+    if (ptr == NULL || size == 0)
     {
-        bool is_zeroized_flag = true; // Initialize to true
-    
-        if (ptr == NULL || size == 0)
+        is_zeroized_flag = false; // Error: Invalid pointer or size
+    }
+
+    if (size % ZEROIZE_ALIGNMENT != 0)
+    {
+        is_zeroized_flag = false; // Error: Size is not aligned
+    }
+
+    if (is_zeroized_flag != false)
+    {
+        const unsigned char *p = (const unsigned char *)ptr;
+        for (size_t i = 0; i < size; i++)
         {
-            is_zeroized_flag = false; // Error: Invalid pointer or size
-        }
-    
-        if (size % ZEROIZE_ALIGNMENT != 0)
-        {
-            is_zeroized_flag = false; // Error: Size is not aligned
-        }
-    
-        if (is_zeroized_flag != false)
-        {
-            const unsigned char *p = (const unsigned char *)ptr;
-            for (size_t i = 0; i < size; i++)
+            if (p[i] != ZEROIZE_PATTERN)
             {
-                if (p[i] != ZEROIZE_PATTERN)
-                {
-                    is_zeroized_flag = false; // Memory is not zeroized
-                    break; // Exit loop early if a non-zeroized byte is found
-                }
+                is_zeroized_flag = false; // Memory is not zeroized
+                break;                    // Exit loop early if a non-zeroized byte is found
             }
         }
-        return is_zeroized_flag; // Memory is zeroized
     }
+    return is_zeroized_flag; // Memory is zeroized
+}

@@ -31,10 +31,19 @@
 #include <stddef.h> // For size_t
 #include <stdbool.h> // For bool type
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 const int ZEROIZE_PATTERN = 0xA5; // Pattern to zeroize memory
 const int ZEROIZE_PATTERN_REVERSE = 0x5A; // Pattern to zeroize memory
 const int ZEROIZE_ALIGNMENT = 4; // Alignment requirement for zeroization
 
 int zeroize(void *ptr, size_t size);
 bool is_zeroized(const void *ptr, size_t size);
+
+#ifdef __cplusplus
+} // extern "C" 
+#endif
+
 #endif
