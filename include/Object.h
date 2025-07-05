@@ -22,6 +22,15 @@ public:
 private:
   int id;
   int data;
+  char padding[4]; // Padding to ensure alignment
+  // This padding is not strictly necessary but can help with alignment
+  // and may be useful in some contexts, especially if the class is extended.
+  // It ensures that the size of the class is a multiple of the alignment requirement.
+  // This is a common practice in C++ to ensure that objects of this class
+  // are properly aligned in memory, which can be important for performance
+  // and compatibility with certain hardware architectures.
+  // The padding size can be adjusted based on the alignment requirements of the platform.
+  // Note: The padding is not used in any operations and is purely for alignment purposes.
 };
 
 #endif

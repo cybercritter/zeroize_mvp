@@ -32,8 +32,9 @@
 #include <stdbool.h>                      // For bool type
 #include <stdint.h> // For uint8_t type
 
-const uint8_t ZEROIZE_PATTERN = 0xA5;         // Pattern to zeroize memory
-const uint8_t ZEROIZE_ALIGNMENT = 4;          // Alignment requirement for zeroization
+const int ZEROIZE_PATTERN = 0xA5; // Pattern used to overwrite memory
+const int ZEROIZE_PATTERN_REVERSE = 0x5A; // Alternate pattern for overwriting memory
+const int ZEROIZE_ALIGNMENT = 4;          // Verify alignment is on a 4-byte boundary
 
 #ifdef __cplusplus
 extern "C"
