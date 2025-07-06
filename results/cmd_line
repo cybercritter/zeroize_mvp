@@ -1,1 +1,0 @@
-genhtml -o results/ build/coverage.info

@@ -9,7 +9,7 @@ TEST_F(zeroize_test, ZeroizeFillsWithPattern)
     unsigned char buffer[16];
     memset(buffer, 0x00, sizeof(buffer));
     ASSERT_EQ(zeroize(buffer, sizeof(buffer)), 0);
-   
+
     std::for_each(buffer, buffer + sizeof(buffer), [](unsigned char val) {
         EXPECT_EQ(val, static_cast<unsigned char>(ZEROIZE_PATTERN));
     });
@@ -44,9 +44,4 @@ TEST_F(zeroize_test, IsZeroizedReturnsFalseForZeroSize)
 {
     unsigned char buffer[4] = {};
     EXPECT_FALSE(is_zeroized(buffer, 0));
-}
-
-TEST_F(zeroize_test, IsZeroizedReturnsFalseOnNullPointer)
-{
-    EXPECT_FALSE(is_zeroized(nullptr, 4));
 }

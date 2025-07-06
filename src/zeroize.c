@@ -44,7 +44,19 @@ int8_t zeroize(void *ptr, size_t size)
         volatile unsigned char *p = (volatile unsigned char *)ptr;
         for (size_t i = 0; i < size; i++)
         {
-            p[i] = ZEROIZE_PATTERN;
+            p[i] = ZEROIZE_PATTERN; // Overwrite with the defined pattern
+        }
+    }
+
+    if (error_code == 0)
+    {
+
+        // Use a volatile pointer to prevent compiler optimizations
+        // that might skip the memory write operation.
+        volatile unsigned char *p = (volatile unsigned char *)ptr;
+        for (size_t i = 0; i < size; i++)
+        {
+            p[i] = ZEROIZE_PATTERN_REVERSE; // Overwrite with the reverse pattern
         }
     }
 
