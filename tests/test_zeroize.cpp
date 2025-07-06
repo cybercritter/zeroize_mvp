@@ -7,17 +7,18 @@
 TEST_F(zeroize_test, ZeroizeFillsWithPattern)
 {
     unsigned char buffer[16];
-    memset(buffer, 0x00, sizeof(buffer));
+    memset(buffer, 0xFE, sizeof(buffer));
     ASSERT_EQ(zeroize(buffer, sizeof(buffer)), 0);
 
-    std::for_each(buffer, buffer + sizeof(buffer), [](unsigned char val) {
-        EXPECT_EQ(val, static_cast<unsigned char>(ZEROIZE_PATTERN));
-    });
+    for(size_t i = 0; i < sizeof(buffer); ++i)
+    {
+        EXPECT_EQ(buffer[i], ZEROIZE_PATTERN_REVERSE) << "Buffer not zeroized at index " << i;
+    }
 }
 
 TEST_F(zeroize_test, ZeroizeReturnsNonZeroOnNullPointer)
 {
-    EXPECT_NE(zeroize(nullptr, 10), 0);
+    EXPECT_NE(zeroize(NULL, 10), 0);
 }
 
 TEST_F(zeroize_test, ZeroizeReturnsMinusOneOnZeroSize)
@@ -29,14 +30,14 @@ TEST_F(zeroize_test, ZeroizeReturnsMinusOneOnZeroSize)
 TEST_F(zeroize_test, IsZeroizedReturnsTrueForZeroizedBuffer)
 {
     unsigned char buffer[8];
-    memset(buffer, ZEROIZE_PATTERN, sizeof(buffer));
+    memset(buffer, ZEROIZE_PATTERN_REVERSE, sizeof(buffer));
     EXPECT_TRUE(is_zeroized(buffer, sizeof(buffer)));
 }
 
 TEST_F(zeroize_test, IsZeroizedReturnsFalseForNonZeroizedBuffer)
 {
     unsigned char buffer[8];
-    memset(buffer, 0x00, sizeof(buffer));
+    memset(buffer, ZEROIZE_PATTERN, sizeof(buffer));
     EXPECT_FALSE(is_zeroized(buffer, sizeof(buffer)));
 }
 

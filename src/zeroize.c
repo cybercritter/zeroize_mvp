@@ -42,7 +42,7 @@ int8_t zeroize(void *ptr, size_t size)
         // Use a volatile pointer to prevent compiler optimizations
         // that might skip the memory write operation.
         volatile unsigned char *p = (volatile unsigned char *)ptr;
-        for (size_t i = 0; i < size; i++)
+        for (register size_t i = 0; i < size; i++)
         {
             p[i] = ZEROIZE_PATTERN; // Overwrite with the defined pattern
         }
@@ -54,7 +54,7 @@ int8_t zeroize(void *ptr, size_t size)
         // Use a volatile pointer to prevent compiler optimizations
         // that might skip the memory write operation.
         volatile unsigned char *p = (volatile unsigned char *)ptr;
-        for (size_t i = 0; i < size; i++)
+        for (register size_t i = 0; i < size; i++)
         {
             p[i] = ZEROIZE_PATTERN_REVERSE; // Overwrite with the reverse pattern
         }
@@ -91,9 +91,9 @@ bool is_zeroized(const void *ptr, size_t size)
     if (is_zeroized_flag != false)
     {
         const unsigned char *p = (const unsigned char *)ptr;
-        for (size_t i = 0; i < size; i++)
+        for (register size_t i = 0; i < size; i++)
         {
-            if (p[i] != ZEROIZE_PATTERN)
+            if (p[i] != ZEROIZE_PATTERN_REVERSE)
             {
                 is_zeroized_flag = false; // Memory is not zeroized
                 break;                    // Exit loop early if a non-zeroized byte is found
