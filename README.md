@@ -3,6 +3,7 @@
 ## Decscription
 This is a MVP of a "zeroize" function. 
 
+This program performs a 2 pass write with the 1 st pattern A5 and the second 5A. This essentially "flips" the bits once.
 
 -----
 
